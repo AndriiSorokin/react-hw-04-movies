@@ -16,3 +16,8 @@
 .link:first-child {
   margin-right: 40px;
 }
+
+.active {
+  color : black
+}
+

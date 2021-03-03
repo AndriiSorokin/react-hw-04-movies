@@ -1,15 +1,20 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
+
 import HomeView from './Pages/HomeView';
 import MoviesView from './Pages/MoviesView';
+import ErrorView from './Pages/ErrorView';
 
 const App = () => {
   return (
     <>
       <Header />
-      <Route exact path="/" component={HomeView} />
-      <Route path="/movies" component={MoviesView} />
+      <Switch>
+        <Route exact path="/" component={HomeView} />
+        <Route exact path="/movies" component={MoviesView} />
+        <Route component={ErrorView} />
+      </Switch>
     </>
   );
 };

@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <AppBar position="static" className="menu">
       <Toolbar variant="dense">
-        <NavLink to="/" className="link">
+        <NavLink exact to="/" className="link">
           Home
         </NavLink>
         <NavLink to="/movies" className="link">
