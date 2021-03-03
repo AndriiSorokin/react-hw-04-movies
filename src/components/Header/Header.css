@@ -1,0 +1,18 @@
+.menu {
+  height: 60px;
+  padding: 20px;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+}
+
+.link {
+  color: aliceblue;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link:first-child {
+  margin-right: 40px;
+}
