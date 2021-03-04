@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getTrendMovies } from '../components/fetch/fetch';
+import TrendingList from '../components/TrendingList/TrendingList';
 
 class HomeView extends Component {
   state = {
@@ -14,7 +15,13 @@ class HomeView extends Component {
   }
 
   render() {
-    return <div></div>;
+    const { movies } = this.state;
+    return (
+      <div>
+        <h1 className="homeTitle">Trending today</h1>
+        <TrendingList movies={movies} />
+      </div>
+    );
   }
 }
 
