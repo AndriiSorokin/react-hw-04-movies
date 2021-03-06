@@ -14,28 +14,35 @@ const MovieDetailsPage = () => {
       .catch(error => console.log(error));
   }, []);
   console.log(movie);
+  const { original_title, poster_path, release_date, overview, vote_average, genres } = movie;
+  console.log(genres);
   return (
     <div className={style.detailsWrapper}>
       <ul className={style.detailsList}>
         <li>
           <h2>{movie.original_title}</h2>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             width="400"
             height="500"
+            alt="img"
           />
         </li>
       </ul>
       <ul className={style.detailsDescription}>
         <li>
           <h3>
-            {movie.original_title} <br></br> release: ({movie.release_date})
+            {original_title} <br></br> release: ({release_date})
           </h3>
           <p>
             Overview :<br></br>
-            {movie.overview}
+            {overview}
           </p>
+          <p> Vote average:{vote_average}</p>
         </li>
+        {/* {genres.map(genre => {
+          <li key={genre.id}>{genre.name}</li>;
+        })} */}
       </ul>
     </div>
   );
