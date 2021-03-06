@@ -46,15 +46,20 @@ const MovieDetailsPage = () => {
         {/* {genres.map(genre => {
           <li key={genre.id}>{genre.name}</li>;
         })} */}
+        <nav className={style.detailNav}>
+          <NavLink className={style.optionLink} to="/movies/actors">
+            Actors
+          </NavLink>
+          <br></br>
+          <NavLink className={style.optionLink} to="/movies/reviews">
+            Reviews
+          </NavLink>
+        </nav>
+        <Switch>
+          <Route path="/movies/actors" component={Actors} />
+          <Route path="/movies/reviews" component={Reviews} />
+        </Switch>
       </ul>
-      <nav>
-        <NavLink to="/movies/actors">Actors</NavLink>
-        <NavLink to="/movies/reviews">Reviews</NavLink>
-      </nav>
-      <Switch>
-        <Route path="/movies/actors" component={Actors} />
-        <Route path="/movies/reviews" component={Reviews} />
-      </Switch>
     </div>
   );
 };

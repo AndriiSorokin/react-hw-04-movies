@@ -5,3 +5,17 @@
 .detailsDescription {
   padding-top: 150px;
 }
+
+.detailList {
+      margin: 0;
+}
+
+.optionLink {
+   text-decoration: none;
+   color: black;
+   transition: ease 0.3s;
+}
+
+.optionLink:hover {
+  color: aquamarine;
+}
