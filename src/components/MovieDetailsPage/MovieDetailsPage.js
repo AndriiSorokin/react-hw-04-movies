@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Switch, useParams, NavLink, Route } from 'react-router-dom';
 import { openSingleMovie } from '../fetch/fetch';
+
+import Actors from '../Actors/Actors';
+import Reviews from '../Reviews/Reviews';
 import style from './MovieDetails.module.css';
 
 const MovieDetailsPage = () => {
@@ -44,6 +47,14 @@ const MovieDetailsPage = () => {
           <li key={genre.id}>{genre.name}</li>;
         })} */}
       </ul>
+      <nav>
+        <NavLink to="/movies/actors">Actors</NavLink>
+        <NavLink to="/movies/reviews">Reviews</NavLink>
+      </nav>
+      <Switch>
+        <Route path="/movies/actors" component={Actors} />
+        <Route path="/movies/reviews" component={Reviews} />
+      </Switch>
     </div>
   );
 };
