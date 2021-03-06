@@ -1,0 +1,7 @@
+.detailsWrapper {
+  display: flex;
+}
+
+.detailsDescription {
+  padding-top: 150px;
+}

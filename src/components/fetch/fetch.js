@@ -8,3 +8,9 @@ export const getTrendMovies = () => {
     .get(`${basicUrl}trending/movie/day?api_key=${apiKey}`)
     .then(response => response.data.results);
 };
+
+export const openSingleMovie = id => {
+  return axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`);
+};
+
+//

@@ -3,6 +3,7 @@ import TrendingItem from '../TrendingItem/TrendingItem';
 import style from './TrendingList.module.css';
 
 const TrendingList = ({ movies }) => {
+  console.log(movies);
   return (
     <>
       <div className="container">
