@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, useParams, NavLink, Route } from 'react-router-dom';
-import { openSingleMovie } from '../fetch/fetch';
+import { openSingleMovie, openActorMovie } from '../fetch/fetch';
 
 import Actors from '../Actors/Actors';
 import Reviews from '../Reviews/Reviews';
@@ -11,6 +11,7 @@ const MovieDetailsPage = () => {
 
   const params = useParams();
   console.log(params.movieId);
+  openActorMovie(params.movieId).then(res => console.log(res));
   useEffect(() => {
     openSingleMovie(params.movieId)
       .then(responseMovie => setMovie(responseMovie.data))

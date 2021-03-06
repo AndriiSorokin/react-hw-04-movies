@@ -10,7 +10,9 @@ export const getTrendMovies = () => {
 };
 
 export const openSingleMovie = id => {
-  return axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`);
+  return axios.get(`${basicUrl}movie/${id}?api_key=${apiKey}`);
 };
 
-//
+export const openActorMovie = id => {
+  return axios.get(`${basicUrl}/movie/${id}/credits?api_key=${apiKey} `);
+};
