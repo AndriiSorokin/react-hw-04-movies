@@ -10,7 +10,6 @@ class HomeView extends Component {
   componentDidMount() {
     getTrendMovies().then(movie => {
       this.setState({ movies: movie });
-      console.log(this.state.movies);
     });
   }
 

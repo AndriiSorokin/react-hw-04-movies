@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, useParams, NavLink, Route } from 'react-router-dom';
-import { openSingleMovie, openActorMovie } from '../fetch/fetch';
-
+import { openSingleMovie } from '../fetch/fetch';
 import Actors from '../Actors/Actors';
 import Reviews from '../Reviews/Reviews';
 import style from './MovieDetails.module.css';
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState([]);
-
   const params = useParams();
-  console.log(params.movieId);
-  openActorMovie(params.movieId).then(res => console.log(res));
+
   useEffect(() => {
     openSingleMovie(params.movieId)
       .then(responseMovie => setMovie(responseMovie.data))
       .catch(error => console.log(error));
   }, []);
-  console.log(movie);
-  const { original_title, poster_path, release_date, overview, vote_average, genres } = movie;
-  console.log(genres);
+
+  const movieId = params.movieId;
+  const { original_title, poster_path, release_date, overview, vote_average, genres, id } = movie;
+
   return (
     <div className={style.detailsWrapper}>
       <ul className={style.detailsList}>
@@ -48,7 +46,13 @@ const MovieDetailsPage = () => {
           <li key={genre.id}>{genre.name}</li>;
         })} */}
         <nav className={style.detailNav}>
-          <NavLink className={style.optionLink} to="/movies/actors">
+          <NavLink
+            className={style.optionLink}
+            to={{
+              pathname: '/movies/actors',
+              state: { id: movieId },
+            }}
+          >
             Actors
           </NavLink>
           <br></br>

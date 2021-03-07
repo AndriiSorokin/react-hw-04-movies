@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 const TrendingItem = ({ title, poster_path, id }) => {
   const history = useHistory();
-  console.log(history);
 
   const goTo = () => {
     history.push(`/movies/${id}`);
