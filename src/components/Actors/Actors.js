@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useParams, useHistory, useRouteMatch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { openActorMovie } from '../fetch/fetch';
-const Actors = () => {
+import style from './Actors.module.css';
+const Actors = ({ id }) => {
   const [actors, setActor] = useState([]);
   const location = useLocation();
   console.log(location);
-  const actorId = location.state.id;
+  console.log(id);
 
   useEffect(() => {
-    openActorMovie(actorId).then(responseActor => setActor(responseActor.data.cast));
+    openActorMovie(id).then(responseActor => setActor(responseActor.data.cast));
   }, []);
   console.log(actors);
-
   return (
-    <div>
+    <>
       <h2>Actors</h2>
-    </div>
+      <ul className={style.actorList}>
+        {actors.map(actor => (
+          <li key={actor.id} className={style.actorItem}>
+            <p>{actor.name}</p>
+            <img
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                  : `https://freshorthoclub.by/sites/default/files/lectors/fbpic_0.jpg`
+              }
+              alt="img"
+              width="200"
+              height="200"
+            />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

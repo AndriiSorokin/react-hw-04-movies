@@ -1,16 +1,24 @@
 .detailsWrapper {
   display: flex;
+  margin-bottom: 120px;
 }
 
 .detailsDescription {
-  padding-top: 150px;
+  padding-top: 120px;
+      margin: 0;
 }
 
 .detailList {
       margin: 0;
 }
 
+
+.title {
+  width: 400px;
+}
 .optionLink {
+margin-right: 40px;
+  text-transform: uppercase;
    text-decoration: none;
    color: black;
    transition: ease 0.3s;
@@ -18,4 +26,8 @@
 
 .optionLink:hover {
   color: aquamarine;
+}
+
+.desc {
+  width: 700px;
 }

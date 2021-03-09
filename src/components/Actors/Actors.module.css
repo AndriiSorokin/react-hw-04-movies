@@ -1,0 +1,10 @@
+.actorList {
+  object-fit: cover;
+  padding: 0;
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ .actorItem {
+   padding-right: 10px;
+ }

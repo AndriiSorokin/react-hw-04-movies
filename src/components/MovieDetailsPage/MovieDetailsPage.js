@@ -15,14 +15,17 @@ const MovieDetailsPage = () => {
       .catch(error => console.log(error));
   }, []);
 
+  console.log(movie);
   const movieId = params.movieId;
-  const { original_title, poster_path, release_date, overview, vote_average, genres, id } = movie;
+  const { original_title, poster_path, release_date, overview, vote_average } = movie;
+  const genres = movie.genres;
+  console.log(genres);
 
   return (
     <div className={style.detailsWrapper}>
       <ul className={style.detailsList}>
         <li>
-          <h2>{movie.original_title}</h2>
+          <h2 className={style.title}>{original_title}</h2>
           <img
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             width="400"
@@ -36,32 +39,28 @@ const MovieDetailsPage = () => {
           <h3>
             {original_title} <br></br> release: ({release_date})
           </h3>
-          <p>
+          <p className={style.desc}>
             Overview :<br></br>
             {overview}
           </p>
           <p> Vote average:{vote_average}</p>
         </li>
-        {/* {genres.map(genre => {
-          <li key={genre.id}>{genre.name}</li>;
-        })} */}
+        {genres?.map(genre => (
+          <li key={genre.id}>
+            <p>{genre.name}</p>
+          </li>
+        ))}
         <nav className={style.detailNav}>
-          <NavLink
-            className={style.optionLink}
-            to={{
-              pathname: '/movies/actors',
-              state: { id: movieId },
-            }}
-          >
+          <NavLink className={style.optionLink} to={`/movies/${movieId}/actors`}>
             Actors
           </NavLink>
-          <br></br>
-          <NavLink className={style.optionLink} to="/movies/reviews">
+          <NavLink className={style.optionLink} to={`/movies/${movieId}/reviews`}>
             Reviews
           </NavLink>
         </nav>
         <Switch>
-          <Route path="/movies/actors" component={Actors} />
+          {/* <Route path="/movies/actors" component={Actors} /> */}
+          <Route path="/movies/:id/actors" render={props => <Actors {...props} id={movieId} />} />
           <Route path="/movies/reviews" component={Reviews} />
         </Switch>
       </ul>
