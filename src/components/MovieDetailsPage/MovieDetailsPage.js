@@ -15,12 +15,9 @@ const MovieDetailsPage = () => {
       .catch(error => console.log(error));
   }, []);
 
-  console.log(movie);
   const movieId = params.movieId;
   const { original_title, poster_path, release_date, overview, vote_average } = movie;
   const genres = movie.genres;
-  console.log(genres);
-
   return (
     <div className={style.detailsWrapper}>
       <ul className={style.detailsList}>
@@ -45,11 +42,14 @@ const MovieDetailsPage = () => {
           </p>
           <p> Vote average:{vote_average}</p>
         </li>
-        {genres?.map(genre => (
-          <li key={genre.id}>
-            <p>{genre.name}</p>
-          </li>
-        ))}
+        <ul className={style.genreList}>
+          <h3 className={style.genreTitle}>Genres: </h3>
+          {genres?.map(genre => (
+            <li className={style.genreItem} key={genre.id}>
+              <p className={style.genreText}>{genre.name}</p>
+            </li>
+          ))}
+        </ul>
         <nav className={style.detailNav}>
           <NavLink className={style.optionLink} to={`/movies/${movieId}/actors`}>
             Actors
@@ -61,7 +61,7 @@ const MovieDetailsPage = () => {
         <Switch>
           {/* <Route path="/movies/actors" component={Actors} /> */}
           <Route path="/movies/:id/actors" render={props => <Actors {...props} id={movieId} />} />
-          <Route path="/movies/reviews" component={Reviews} />
+          <Route path="/movies/:id/reviews" render={props => <Reviews {...props} id={movieId} />} />
         </Switch>
       </ul>
     </div>

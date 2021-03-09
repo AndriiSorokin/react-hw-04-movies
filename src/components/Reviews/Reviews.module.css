@@ -1,0 +1,11 @@
+.reviewList {
+  padding: 0;
+}
+
+.author{
+  text-transform: uppercase;
+}
+.text {
+  width: 700px;
+  color: rgb(7, 131, 131);
+}

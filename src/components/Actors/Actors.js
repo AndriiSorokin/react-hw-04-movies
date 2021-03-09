@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { openActorMovie } from '../fetch/fetch';
 import style from './Actors.module.css';
 const Actors = ({ id }) => {
   const [actors, setActor] = useState([]);
-  const location = useLocation();
-  console.log(location);
   console.log(id);
 
   useEffect(() => {
@@ -14,11 +11,12 @@ const Actors = ({ id }) => {
   console.log(actors);
   return (
     <>
-      <h2>Actors</h2>
       <ul className={style.actorList}>
         {actors.map(actor => (
           <li key={actor.id} className={style.actorItem}>
-            <p>{actor.name}</p>
+            <p className={style.actorText}>
+              {actor.name} <br></br> Role:{actor.character}
+            </p>
             <img
               src={
                 actor.profile_path

@@ -31,3 +31,21 @@ margin-right: 40px;
 .desc {
   width: 700px;
 }
+
+.genreList {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.genreItem {
+  padding-right: 7px;
+}
+
+.genreTitle {
+  margin-right: 10px;
+}
+
+.genreText {
+   color: rgb(7, 131, 131);
+}

@@ -14,5 +14,9 @@ export const openSingleMovie = id => {
 };
 
 export const openActorMovie = id => {
-  return axios.get(`${basicUrl}/movie/${id}/credits?api_key=${apiKey} `);
+  return axios.get(`${basicUrl}/movie/${id}/credits?api_key=${apiKey}`);
+};
+
+export const openReviewMovie = id => {
+  return axios.get(`${basicUrl}/movie/${id}/reviews?api_key=${apiKey}`);
 };

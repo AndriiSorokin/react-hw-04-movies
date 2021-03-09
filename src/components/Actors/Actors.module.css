@@ -6,5 +6,13 @@
  }
 
  .actorItem {
+   width: 230px;
    padding-right: 10px;
+ }
+
+ .actorText {
+   font-size: 13px;
+   width: 207px;
+   height: 32px;
+    color: rgb(7, 131, 131);
  }
