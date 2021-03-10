@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const basicUrl = 'https://api.themoviedb.org/3/';
 const apiKey = '0402639248cace151841958273081105';
+const movies = {};
+
 
 export const getTrendMovies = () => {
   return axios
@@ -19,4 +21,8 @@ export const openActorMovie = id => {
 
 export const openReviewMovie = id => {
   return axios.get(`${basicUrl}/movie/${id}/reviews?api_key=${apiKey}`);
+};
+
+export const searchMovie = querry => {
+  return axios.get(`${basicUrl}search/movie?query=${querry}&api_key=${apiKey}`);
 };
