@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const basicUrl = 'https://api.themoviedb.org/3/';
 const apiKey = '0402639248cace151841958273081105';
-const movies = {};
-
 
 export const getTrendMovies = () => {
   return axios

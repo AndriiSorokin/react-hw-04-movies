@@ -3,12 +3,9 @@ import { openActorMovie } from '../fetch/fetch';
 import style from './Actors.module.css';
 const Actors = ({ id }) => {
   const [actors, setActor] = useState([]);
-  console.log(id);
-
   useEffect(() => {
     openActorMovie(id).then(responseActor => setActor(responseActor.data.cast));
   }, []);
-  console.log(actors);
   return (
     <>
       <ul className={style.actorList}>

@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={HomeView} />
-        <Route exact path="/movies" component={MoviesView} />
+        <Route exact path="/movies/" component={MoviesView} />
         <Route path="/movies/:movieId" component={MovieDetailsPage} />
         <Route component={ErrorView} />
       </Switch>

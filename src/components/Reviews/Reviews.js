@@ -8,7 +8,6 @@ const Reviews = ({ id }) => {
   useEffect(() => {
     openReviewMovie(id).then(responseReview => setReviews(responseReview.data.results));
   }, []);
-  console.log(reviews);
   return (
     <>
       <ul className={style.reviewList}>
