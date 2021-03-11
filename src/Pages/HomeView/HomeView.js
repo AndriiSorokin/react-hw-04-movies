@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getTrendMovies } from '../components/fetch/fetch';
-import TrendingList from '../components/TrendingList/TrendingList';
+import { getTrendMovies } from '../../components/fetch/fetch';
+import TrendingList from '../../components/TrendingList/TrendingList';
 
 class HomeView extends Component {
   state = {
