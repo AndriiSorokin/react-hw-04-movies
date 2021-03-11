@@ -1,12 +1,20 @@
 import React from 'react';
 import style from './TrendingItem.module.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const TrendingItem = ({ title, poster_path, id }) => {
   const history = useHistory();
+  const location = useLocation();
+  console.log(location);
 
   const goTo = () => {
-    history.push(`/movies/${id}`);
+    history.push({
+      ...location,
+      pathname: `movies/${id}`,
+      state: {
+        from: location,
+      },
+    });
   };
   return (
     <li className={style.trendigItem} onClick={goTo}>

@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams, NavLink, Switch, Route } from 'react-router-dom';
+import { useHistory, NavLink, Switch, Route, withRouter, useLocation } from 'react-router-dom';
 import { searchMovie } from '../../components/fetch/fetch';
 import style from './MoviesView.module.css';
-// import MovieDetailsPage from '../components/MovieDetailsPage/MovieDetailsPage';
 
 const MoviesView = () => {
   const [movies, setMovie] = useState([]);
   const [querry, setQuerry] = useState('');
-  // const [id, setId] = useState('');
-  // const history = useHistory();
-  // const params = useParams();
-
+  const history = useHistory();
+  const location = useLocation();
   const handleInput = event => setQuerry(event.target.value);
-
-  // useEffect(() => {
-  //   searchMovie(querry).then(movie => setMovie(movie.data.results));
-  //   setId(movieId => setId(movieId.id));
-  //   setQuerry('');
-  // }, []);
 
   const submitHeandler = e => {
     e.preventDefault();
     searchMovie(querry).then(movie => setMovie(movie.data.results));
-    // setId(movieId => setId(movieId.id));
+    history.push({
+      ...location,
+      search: `querry=${querry}`,
+    });
+
     setQuerry('');
   };
-  // const moviesId = () => {
-  //   movies.map(movie => setId(movie.id));
-  //   console.log(movies);
-  // };
-
-  // const goTo = () => {
-  //   movies.map(movie => setId(movie.id));
-  //   history.push(`/movies/${id}`);
-  // };
+  useEffect(() => {
+    const url = new URLSearchParams(location.search).get('querry');
+    if (!url) {
+      return;
+    }
+    searchMovie(url).then(movie => setMovie(movie.data.results));
+  }, []);
 
   return (
     <>
@@ -53,7 +46,15 @@ const MoviesView = () => {
       <ul className={style.trendingList}>
         {movies.map(movie => (
           <li className={style.trendigItem} key={movie.id}>
-            <NavLink className={style.optionLink} to={`/movies/${movie.id}`}>
+            <NavLink
+              className={style.optionLink}
+              to={{
+                pathname: `/movies/${movie.id}`,
+                state: {
+                  from: location,
+                },
+              }}
+            >
               <h2 className={style.trendingTitle}>{movie.title}</h2>
               <img
                 className={style.trendingImg}
@@ -73,4 +74,4 @@ const MoviesView = () => {
   );
 };
 
-export default MoviesView;
+export default withRouter(MoviesView);

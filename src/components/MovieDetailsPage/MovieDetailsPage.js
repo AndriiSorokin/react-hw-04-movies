@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, useParams, NavLink, Route } from 'react-router-dom';
+import { Switch, useParams, NavLink, Route, useHistory, useLocation } from 'react-router-dom';
 import { openSingleMovie } from '../fetch/fetch';
 import Actors from '../Actors/Actors';
 import Reviews from '../Reviews/Reviews';
@@ -8,6 +8,8 @@ import style from './MovieDetails.module.css';
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState([]);
   const params = useParams();
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     openSingleMovie(params.movieId)
@@ -15,56 +17,90 @@ const MovieDetailsPage = () => {
       .catch(error => console.log(error));
   }, []);
 
+  const backB = () => {
+    console.log(location);
+    history.push(location.state?.from || '/');
+  };
   const movieId = params.movieId;
   const { original_title, poster_path, release_date, overview, vote_average } = movie;
   const genres = movie.genres;
+  console.log(location);
   return (
-    <div className={style.detailsWrapper}>
-      <ul className={style.detailsList}>
-        <li>
-          <h2 className={style.title}>{original_title}</h2>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-            width="400"
-            height="500"
-            alt="img"
-          />
-        </li>
-      </ul>
-      <ul className={style.detailsDescription}>
-        <li>
-          <h3>
-            {original_title} <br></br> release: ({release_date})
-          </h3>
-          <p className={style.desc}>
-            Overview :<br></br>
-            {overview}
-          </p>
-          <p> Vote average:{vote_average}</p>
-        </li>
-        <ul className={style.genreList}>
-          <h3 className={style.genreTitle}>Genres: </h3>
-          {genres?.map(genre => (
-            <li className={style.genreItem} key={genre.id}>
-              <p className={style.genreText}>{genre.name}</p>
-            </li>
-          ))}
+    <>
+      <button
+        type="button"
+        className={style.backBtn}
+        // onClick={() => history.push(location.state.from)}
+        onClick={() => backB()}
+      >
+        Back
+      </button>
+      <div className={style.detailsWrapper}>
+        <ul className={style.detailsList}>
+          <li>
+            <h2 className={style.title}>{original_title}</h2>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              width="400"
+              height="500"
+              alt="img"
+            />
+          </li>
         </ul>
-        <nav className={style.detailNav}>
-          <NavLink className={style.optionLink} to={`/movies/${movieId}/actors`}>
-            Actors
-          </NavLink>
-          <NavLink className={style.optionLink} to={`/movies/${movieId}/reviews`}>
-            Reviews
-          </NavLink>
-        </nav>
-        <Switch>
-          {/* <Route path="/movies/actors" component={Actors} /> */}
-          <Route path="/movies/:id/actors" render={props => <Actors {...props} id={movieId} />} />
-          <Route path="/movies/:id/reviews" render={props => <Reviews {...props} id={movieId} />} />
-        </Switch>
-      </ul>
-    </div>
+        <ul className={style.detailsDescription}>
+          <li>
+            <h3>
+              {original_title} <br></br> release: ({release_date})
+            </h3>
+            <p className={style.desc}>
+              Overview :<br></br>
+              {overview}
+            </p>
+            <p> Vote average:{vote_average}</p>
+          </li>
+          <ul className={style.genreList}>
+            <h3 className={style.genreTitle}>Genres: </h3>
+            {genres?.map(genre => (
+              <li className={style.genreItem} key={genre.id}>
+                <p className={style.genreText}>{genre.name}</p>
+              </li>
+            ))}
+          </ul>
+          <nav className={style.detailNav}>
+            <NavLink
+              className={style.optionLink}
+              to={{
+                pathname: `/movies/${movieId}/actors`,
+                state: {
+                  from: location.state?.from,
+                },
+              }}
+            >
+              Actors
+            </NavLink>
+            <NavLink
+              className={style.optionLink}
+              to={{
+                pathname: `/movies/${movieId}/reviews`,
+                state: {
+                  from: location.state?.from,
+                },
+              }}
+            >
+              Reviews
+            </NavLink>
+          </nav>
+          <Switch>
+            {/* <Route path="/movies/actors" component={Actors} /> */}
+            <Route path="/movies/:id/actors" render={props => <Actors {...props} id={movieId} />} />
+            <Route
+              path="/movies/:id/reviews"
+              render={props => <Reviews {...props} id={movieId} />}
+            />
+          </Switch>
+        </ul>
+      </div>
+    </>
   );
 };
 
