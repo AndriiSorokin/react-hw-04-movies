@@ -18,13 +18,12 @@ const MovieDetailsPage = () => {
   }, []);
 
   const backB = () => {
-    console.log(location);
     history.push(location.state?.from || '/');
   };
   const movieId = params.movieId;
   const { original_title, poster_path, release_date, overview, vote_average } = movie;
   const genres = movie.genres;
-  console.log(location);
+
   return (
     <>
       <button

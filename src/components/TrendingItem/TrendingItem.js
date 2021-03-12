@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './TrendingItem.module.css';
 import { useHistory, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const TrendingItem = ({ title, poster_path, id }) => {
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
 
   const goTo = () => {
     history.push({
@@ -28,6 +28,12 @@ const TrendingItem = ({ title, poster_path, id }) => {
       />
     </li>
   );
+};
+
+TrendingItem.propTypes = {
+  title: PropTypes.string,
+  poster_path: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default TrendingItem;

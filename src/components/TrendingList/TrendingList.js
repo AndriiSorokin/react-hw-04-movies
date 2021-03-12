@@ -1,6 +1,7 @@
 import React from 'react';
 import TrendingItem from '../TrendingItem/TrendingItem';
 import style from './TrendingList.module.css';
+import PropTypes from 'prop-types';
 
 const TrendingList = ({ movies }) => {
   return (
@@ -16,4 +17,7 @@ const TrendingList = ({ movies }) => {
   );
 };
 
+TrendingList.propTypes = {
+  movies: PropTypes.array,
+};
 export default TrendingList;

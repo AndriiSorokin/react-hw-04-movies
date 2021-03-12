@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { openActorMovie } from '../fetch/fetch';
 import style from './Actors.module.css';
+import PropTypes from 'prop-types';
+
 const Actors = ({ id }) => {
   const [actors, setActor] = useState([]);
   useEffect(() => {
@@ -29,6 +31,10 @@ const Actors = ({ id }) => {
       </ul>
     </>
   );
+};
+
+Actors.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default Actors;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { openReviewMovie } from '../fetch/fetch';
 import style from './Reviews.module.css';
+import PropTypes from 'prop-types';
 
 const Reviews = ({ id }) => {
   const [reviews, setReviews] = useState([]);
@@ -24,6 +25,10 @@ const Reviews = ({ id }) => {
       </ul>
     </>
   );
+};
+
+Reviews.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default Reviews;
